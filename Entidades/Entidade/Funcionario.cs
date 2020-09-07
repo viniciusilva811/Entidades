@@ -1,13 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Contracts;
 using System.Text;
 using Curso.Entidade.Enumerados;
+using Microsoft.VisualBasic;
 
 namespace Curso.Entidade
 {
     class Funcionario
     {
-        public string Name { get; set; }
+        public string Nome { get; set; }
         public NivelFuncionario Nivel { get; set; }
         public double SalarioBase { get; set; }
 
@@ -23,9 +25,9 @@ namespace Curso.Entidade
         {
         }
 
-        public Funcionario(string name, NivelFuncionario nivel, double salarioBase, Departamentos departamentos)
+        public Funcionario(string nome, NivelFuncionario nivel, double salarioBase, Departamentos departamentos)
         {
-            Name = name;
+            Nome = nome;
             Nivel = nivel;
             SalarioBase = salarioBase;
             Departamentos = departamentos;
@@ -41,6 +43,17 @@ namespace Curso.Entidade
             Contratos.Remove(contrato);
         }
 
-         
+        public double Ganhos(int ano, int mes) 
+        {
+            double soma = SalarioBase;
+            foreach(HorasContrato contrato in Contratos) 
+            {
+                if (contrato.Data.Year == ano && contrato.Data.Month == mes)
+                {
+                    soma += contrato.ValorTotal();
+                }
+            }
+            return soma;
+        } 
     }
 }
