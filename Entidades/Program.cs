@@ -37,9 +37,31 @@ namespace Curso
                 Console.Write("Data = (DIA/MES/ANO): ");
                 
                 DateTime data = DateTime.Parse(Console.ReadLine());
+                double valorHora = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+
+                Console.Write("Duracao em horas: ");
+                int horas = int.Parse(Console.ReadLine());
+
+                HorasContrato contrato = new HorasContrato(data, valorHora, horas);
+
+                func.AdicionarContrato(contrato);
 
             }
-            
+            Console.WriteLine();
+            Console.WriteLine("Entre com mes e ano para calcular o ganho do Funcionario:  ");
+
+            string mesEano = Console.ReadLine();
+            /* uso do substring para tirar o mes e ano para guardar na variável*/
+
+            int mes = int.Parse(mesEano.Substring(0, 2));
+            int ano = int.Parse(mesEano.Substring(3));
+
+            Console.WriteLine("Nome: " + func.Nome);
+            Console.WriteLine("Departamentos: " + func.Departamentos.Nome);
+
+            Console.WriteLine("Os ganhos " + mesEano + ": " +func.Ganhos(ano, mes).ToString("F2", CultureInfo.InvariantCulture));
+
+
         }
     }
 }

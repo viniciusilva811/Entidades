@@ -6,15 +6,15 @@ namespace Curso.Entidade
 {
     class Departamentos
     {
-        public String Name { get; set; }
+        public String Nome { get; set; }
 
         public Departamentos() 
         {   
         }
 
-        public Departamentos(string name) {
-           
-            Name = name;
+        public Departamentos(string nome) {
+
+            Nome = nome;
 
         }
     }
